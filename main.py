@@ -31,19 +31,19 @@ args = None
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train')
-    train_data_path = 'E:/19-WangLLei/10X/GGCN for RUL prediction/CMAPSSData/train_FD002.txt'
-    test_data_path = 'E:/19-WangLLei/10X/GGCN for RUL prediction/CMAPSSData/test_FD002.txt'
-    test_RUL_path = 'E:/19-WangLLei/10X/GGCN for RUL prediction/CMAPSSData/RUL_FD002.txt'
-    adj_path = 'E:/19-WangLLei/10X/GGCN for RUL prediction/CMAPSSData/adj_002.txt'
+    train_data_path = 'E:/19-WangLLei/10X/GGCN for RUL prediction/CMAPSSData/train_FD001.txt'
+    test_data_path = 'E:/19-WangLLei/10X/GGCN for RUL prediction/CMAPSSData/test_FD001.txt'
+    test_RUL_path = 'E:/19-WangLLei/10X/GGCN for RUL prediction/CMAPSSData/RUL_FD001.txt'
+    adj_path = 'E:/19-WangLLei/10X/GGCN for RUL prediction/CMAPSSData/adj_001.txt'
     data_path = [train_data_path, test_data_path, test_RUL_path, adj_path]
     # basic parameters
     parser.add_argument('--model_name', type=str, default='GGCNet', help='the name of the model')
     parser.add_argument('--data_name', type=str, default='CMAPSS', help='the name of the data')
-    parser.add_argument('--data_file', type=str, default='FD002', help='the file of the data')
+    parser.add_argument('--data_file', type=str, default='FD001', help='the file of the data')
     parser.add_argument('--data_path', type=str, default=data_path, help='the directory of the data')
     parser.add_argument('--monitor_acc', type=str, default='RUL', help='the performance score')
     parser.add_argument('--cuda_device', type=str, default='0', help='assign device')
-    parser.add_argument('--checkpoint_dir', type=str, default='./checkpoint_GGCNet_FD002',
+    parser.add_argument('--checkpoint_dir', type=str, default='./checkpoint_GGCNet_FD001',
                         help='the directory to save the model')
     parser.add_argument("--pretrained", type=bool, default=True, help='whether to load the pretrained model')
     parser.add_argument('--batch_size', type=int, default=256, help='batchsize of the training process')
