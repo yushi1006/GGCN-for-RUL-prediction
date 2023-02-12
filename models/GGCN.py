@@ -68,10 +68,6 @@ class Graph_ConvGRUCell(nn.Module):
 
     def __init__(self, input_dim, gnn_hidden_dim, rnn_hidden_dim, num_nodes, gnn_bias, dropout):
         """
-        Initialize Graph ConvGRU cell.
-
-        Parameters
-        ----------
         input_dim: int
             Number of channels of input tensor.
         gnn_hidden_dim: int
@@ -131,8 +127,6 @@ class Graph_ConvGRUCell(nn.Module):
 
 class Graph_ConvRNN(nn.Module):
     """
-
-    Parameters:
         input_dim: Number of channels in input
         num_layers: Number of RNN layers stacked on each other
         gnn_hidden_dim: Number of hidden channels for GNN
@@ -142,22 +136,12 @@ class Graph_ConvRNN(nn.Module):
         gnn_dropout: dropout probability in GNN
         return_all_layers: Return the list of computations for all layers
         batch_first: Whether or not dimension 0 is the batch or not
-
-    Input:
-        input_tensor: a tensor of size [B, T, N, C] or [T, B, N, C]
-        adj: adjacency matrix, a tensor of size [N, N]
-    Output:
-        A tuple of two lists of length num_layers (or length 1 if return_all_layers is False).
-            0 - layer_output_list is the list of lists of length T of each output
-            1 - last_state_list is the list of last states
-                each element of the list is h for rnn hidden state
     """
 
     def __init__(self, input_dim, num_layers, gnn_hidden_dim, rnn_hidden_dim, num_nodes,
                  gnn_bias=True, gnn_dropout=0.5, batch_first=True, return_all_layers=True):
         super(Graph_ConvRNN, self).__init__()
 
-        # Make sure that both `rnn_hidden_dim` and `gcn_hidden_dim` are lists having len == num_layers
         gnn_hidden_dim = self._extend_for_multilayer(gnn_hidden_dim, num_layers)
         rnn_hidden_dim = self._extend_for_multilayer(rnn_hidden_dim, num_layers)
         if not len(gnn_hidden_dim) == len(rnn_hidden_dim) == num_layers:
@@ -189,16 +173,9 @@ class Graph_ConvRNN(nn.Module):
 
     def forward(self, input_tensor, adj, init_state=None):
         """
-
-        Parameters
-        ----------
         input_tensor: 4-D Tensor either of shape [B, T, N, C] or [T, B, N, C]
         adj: adjacency matrix， 2-D Tensor of shape (N, N)
         init_state: initial hidden state for RNN
-
-        Returns
-        -------
-        last_state_list, layer_output
         """
         if not self.batch_first:
             # (t, b, n, c) -> (b, t, n, c)
@@ -257,9 +234,9 @@ class GGCNet(nn.Module):
     def __init__(self):
         super(GGCNet, self).__init__()
         self.gcrnn = Graph_ConvRNN(input_dim=4, num_layers=4, gnn_hidden_dim=[32, 32, 16, 16],
-                                   rnn_hidden_dim=[8, 8, 4, 4], num_nodes=17, gnn_bias=True, gnn_dropout=0.5,
+                                   rnn_hidden_dim=[8, 8, 4, 4], num_nodes=14, gnn_bias=True, gnn_dropout=0.5,
                                    batch_first=True, return_all_layers=True)  # [56, 28, 14];[8, 16, 4]
-        self.fc = nn.Sequential(nn.Linear(30*17*24, 100), nn.ReLU(inplace=True))
+        self.fc = nn.Sequential(nn.Linear(30*14*24, 100), nn.ReLU(inplace=True))
         self.dropout = nn.Dropout(0.5)  # 0.2
         self.fc1 = nn.Sequential(nn.Linear(100, 1))  # outputchannel=1
         self.fc2 = nn.Sequential(nn.Linear(100, 1))
