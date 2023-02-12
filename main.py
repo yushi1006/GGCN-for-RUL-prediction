@@ -31,10 +31,10 @@ args = None
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train')
-    train_data_path = 'E:/19-WangLLei/10X/GGCN for RUL prediction/CMAPSSData/train_FD001.txt'
-    test_data_path = 'E:/19-WangLLei/10X/GGCN for RUL prediction/CMAPSSData/test_FD001.txt'
-    test_RUL_path = 'E:/19-WangLLei/10X/GGCN for RUL prediction/CMAPSSData/RUL_FD001.txt'
-    adj_path = 'E:/19-WangLLei/10X/GGCN for RUL prediction/CMAPSSData/adj_001.txt'
+    train_data_path = 'E:/GGCN for RUL prediction/CMAPSSData/train_FD001.txt'
+    test_data_path = 'E:/GGCN for RUL prediction/CMAPSSData/test_FD001.txt'
+    test_RUL_path = 'E:/GGCN for RUL prediction/CMAPSSData/RUL_FD001.txt'
+    adj_path = 'E:/GGCN for RUL prediction/CMAPSSData/adj_001.txt'
     data_path = [train_data_path, test_data_path, test_RUL_path, adj_path]
     # basic parameters
     parser.add_argument('--model_name', type=str, default='GGCNet', help='the name of the model')
