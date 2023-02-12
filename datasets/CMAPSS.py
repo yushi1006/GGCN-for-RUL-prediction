@@ -79,8 +79,7 @@ def prepare_train_data(data_path, normalization_type, win_len, diff_order):
     # Read the data
     df_train = local_load_data(data_path[0])
     # Normalization
-    # s_cols = ['C1', 'C2', 'C3'] + [x for x in df_train.columns if 'S' in x] # for FD002 and FD004
-    s_cols = [x for x in df_train.columns if 'S' in x]  # for FD001 and FD003
+    s_cols = [x for x in df_train.columns if 'S' in x]
     df_train = normalization_train_data(df_train, s_cols, normalization_type)
     c_cols = ['C1', 'C2', 'C3']
     df_train = normalization_train_data(df_train, c_cols, normalization_type)
@@ -97,8 +96,7 @@ def prepare_val_data(data_path, normalization_type, win_len, diff_order):
     df_test = local_load_data(data_path[1])
     test_rul = np.loadtxt(data_path[2])
     # Normalization
-    # s_cols = ['C1', 'C2', 'C3'] + [x for x in df_train.columns if 'S' in x]   # for FD002 and FD004
-    s_cols = [x for x in df_train.columns if 'S' in x]      # FD001 and FD003
+    s_cols = [x for x in df_train.columns if 'S' in x]  
     df_test = normalization_test_data(df_train, df_test, s_cols, normalization_type)
     c_cols = ['C1', 'C2', 'C3']
     df_test = normalization_test_data(df_train, df_test, c_cols, normalization_type)
@@ -115,7 +113,6 @@ def prepare_test_data(data_path, normalization_type, win_len, diff_order):
     df_test = local_load_data(data_path[1])
     test_rul = np.loadtxt(data_path[2])
     # Normalization
-    # s_cols = ['C1', 'C2', 'C3'] + [x for x in df_train.columns if 'S' in x]
     s_cols = [x for x in df_train.columns if 'S' in x]
     df_test = normalization_test_data(df_train, df_test, s_cols, normalization_type)
     c_cols = ['C1', 'C2', 'C3']
