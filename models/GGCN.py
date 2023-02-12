@@ -77,7 +77,7 @@ class Graph_ConvGRUCell(nn.Module):
         num_nodes: int
             Number of graph nodes.
         gnn_bias: bool
-            Whether or not to add the bias for GCN.
+            Whether to add the bias for GCN.
         dropout: float
             Dropout probability for GNN.
         """
@@ -135,7 +135,7 @@ class Graph_ConvRNN(nn.Module):
         gnn_bias: Bias or no bias in GNN
         gnn_dropout: dropout probability in GNN
         return_all_layers: Return the list of computations for all layers
-        batch_first: Whether or not dimension 0 is the batch or not
+        batch_first: Whether dimension 0 is the batch
     """
 
     def __init__(self, input_dim, num_layers, gnn_hidden_dim, rnn_hidden_dim, num_nodes,
